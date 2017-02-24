@@ -1,0 +1,12 @@
+[
+  {
+    "name":"James' Blog",
+    "url":"http://blog.jimdhughes.com",
+    "notify":["jim.d.hughes@gmail.com"]
+  },
+  {
+    "name":"My CouchDB",
+    "url":"http://127.0.0.1:5984",
+    "notify":["jim.d.hughes@gmail.com"]
+  }
+]

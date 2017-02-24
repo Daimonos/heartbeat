@@ -1,0 +1,9 @@
+{
+  "mail":{
+    "from":"mailer@domain.com"
+  },
+  "server":{
+    "host":"localhost",
+    "port":"3001"
+  }
+}
