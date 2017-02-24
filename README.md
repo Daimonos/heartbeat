@@ -73,5 +73,9 @@ Just as a PSA - This should be hosted on your internal network in order to monit
 One endpoint exists at whatever you determined your setup to be under `config/server.json`
 check `http://localhost:3001` for a JSON list of all your heartbeats, whether they are in error or not, and the last date they were checked.
 
+## Contributing
+Have some ideas? Feel free to request some additions or, better yet, add them yourself and share the love!
+I've got some ideas to make a usable web interface, adding in some layer of persistance. However this does all that I *really* need it to do for now.
+
 ## License
 MIT
