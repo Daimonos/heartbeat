@@ -77,5 +77,8 @@ check `http://localhost:3001` for a JSON list of all your heartbeats, whether th
 Have some ideas? Feel free to request some additions or, better yet, add them yourself and share the love!
 I've got some ideas to make a usable web interface, adding in some layer of persistance. However this does all that I *really* need it to do for now.
 
+## In Progress
+Getting a valid response doesn't necesarrily indicate server health.  I'm working on features to detect 400 and 500 level errors and report on them effectively.
+
 ## License
 MIT
