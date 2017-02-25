@@ -80,7 +80,7 @@ I've got some ideas to make a usable web interface, adding in some layer of pers
 ## Known Issues
 Sometimes self-signed certs will throw back errors. You can fix this by setting a NODE_ENV variable:
 ```
-$ export NODE_TLS_REJECT_UNAUTHORIZED = '0';
+NODE_TLS_REJECT_UNAUTHORIZED=0;
 ```
 It's not super safe, but this is intended to run on an internal network so I'd put risk level at yellow max.
 ## License
