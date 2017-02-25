@@ -6,7 +6,6 @@ var moment = require('moment');
 var ONE_HOUR = 60*60*1000;
 var config = require("../config/system");
 
-process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
 var heartbeats;
 /**
  * Schedule Heartbeats
@@ -27,9 +26,27 @@ exports.scheduleHeartbeats = function(h){
           handleError(h);
         }
         else{
-          if(h.registeredError){
+          if(r.statusCode >= 400 && (h.errorCode !== r.statusCode)){
+            h.errorCode = r.statusCode
+            console.log(h.name+"\t"+h.url+"\t issued an error status code of "+r.statusCode+" at "+moment().utc().format());
+            mailer.sendMail(
+              h.notify,
+              config.mail.from,
+              "WARNING - "+h.name+" heartbeat returned a status code of "+r.statusCode,
+              "This is just a warning. Your server is online however we received a status code of "+r.statusCode+" indicating that there may be an issue\n"+moment().utc().format(),
+              "",
+              ()=>{}
+              )
+          }
+          else if(h.registeredError){
             console.log(h.name+"\t"+h.url+"\tregained heartbeat\t"+moment().utc().format())
-            mailer.sendMail(h.notify, config.mail.from, "NOTICE - "+h.name+" regained heartbeat", "This is a message to notify you that "+h.name+" has regained its heartbeat at "+moment(h.date).utc().format(), "", ()=>{});
+            mailer.sendMail(
+              h.notify, 
+              config.mail.from, 
+              "NOTICE - "+h.name+" regained heartbeat", 
+              "This is a message to notify you that "+h.name+" has regained its heartbeat at "+moment(h.date).utc().format(), 
+              "", 
+              ()=>{})
           }
           else{
             console.log(h.name+"\t"+h.url+"\tregistered heartbeat\t"+moment().utc().format())
@@ -60,7 +77,7 @@ function checkHeartbeat(url, callback){
       callback(true, false);
     }
     else{
-      callback(false, true);
+      callback(false, r);
     }
   })
 }
