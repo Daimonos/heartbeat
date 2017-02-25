@@ -77,8 +77,11 @@ check `http://localhost:3001` for a JSON list of all your heartbeats, whether th
 Have some ideas? Feel free to request some additions or, better yet, add them yourself and share the love!
 I've got some ideas to make a usable web interface, adding in some layer of persistance. However this does all that I *really* need it to do for now.
 
-## In Progress
-Getting a valid response doesn't necesarrily indicate server health.  I'm working on features to detect 400 and 500 level errors and report on them effectively.
-
+## Known Issues
+Sometimes self-signed certs will throw back errors. You can fix this by setting a NODE_ENV variable:
+```
+$ export NODE_TLS_REJECT_UNAUTHORIZED = '0';
+```
+It's not super safe, but this is intended to run on an internal network so I'd put risk level at yellow max.
 ## License
 MIT
